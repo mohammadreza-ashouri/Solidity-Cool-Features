@@ -22,5 +22,5 @@ contract Playground {
     }
 
 }
-
-// --> The execution cost of the withdraw function now is 23692 gas
+````
+ The execution cost of the withdraw function now is 23692 gas
