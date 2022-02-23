@@ -23,4 +23,4 @@ contract Playground {
 
 }
 ````
- The execution cost of the withdraw function now is 23692 gas
+ The execution cost of the withdraw function now is 23692 gas, the longer is error message is, the more gas is going to consume.
