@@ -9,7 +9,7 @@ If you use an string to show the error the amount of the gas depends on the stri
 
 
 ```
-pragma solidity ^0.8;
+pragma solidity ^0.8.4;
 
 contract Playground {
     address payable owner = payable(msg.sender);
@@ -23,4 +23,28 @@ contract Playground {
 
 }
 ````
- The execution cost of the withdraw function now is 23692 gas, the longer is error message is, the more gas is going to consume.
+ The execution cost of the withdraw function now is ***23678*** gas, the longer is error message is, the more gas is going to consume.
+ 
+ #### So now what?
+ Now we want to take advantage of a new features introduced in Solidity 8 in order to reduce our gas consumption!
+ 
+ ```
+pragma solidity ^0.8.4;
+
+error Unauthorized (address caller);  // here is our custom error
+contract Playground {
+    address payable owner = payable(msg.sender);
+    
+
+    function withdraw() public {
+        if (msg.sender != owner)
+            revert Unauthorized(msg.sender);
+
+        owner.transfer(address(this).balance);
+    }
+    // ...
+}
+ 
+ ````
+  The execution cost of the withdraw function now is ***23591*** gas!
+ 
