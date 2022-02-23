@@ -47,4 +47,12 @@ contract Playground {
  
  ````
   The execution cost of the withdraw function now is ***23591*** gas!
+  
+  
+  address public deployedAddr;
+
+    function createDSalted(bytes32 salt, uint arg) public {
+        D d = new D{salt: salt}(arg);
+        deployedAddr = address(d);
+    }
  
