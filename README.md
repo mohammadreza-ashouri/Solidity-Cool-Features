@@ -56,3 +56,39 @@ contract Playground {
         deployedAddr = address(d);
     }
  
+
+#### Caching Local State Variables
+If you are familiar with databases in sofware engineering, you know that fetching data from databases are slower than fetching data from the memory.
+We have the same concept in Soldity as well, but here we can exchange the term "Database" with "Local State" variables.
+
+Take a look at the following example with high gas consumption before the cashing technique:
+
+````
+pragma solidity ^0.8.4;
+
+contract Test{
+
+    unint public n=5;
+
+    function nonoptimized() external view returns (unint) {
+
+    uint a=0;
+        for(uinit i=0; i<n; i++){ // in each iteration, we have to check the local state variable n, which is a slow approach
+          a+=1;
+         }
+      return a;
+    }
+    
+   function optimized() external view returns (unint) {
+
+     uint a=0;
+     unit cach_n = n; // here we cach the local state variable into a local variable that does not consume expensive memory
+        for(uinit i=0; i<cach_n; i++){ // in each iteration, we have to check the local state variable n, which is a slow approach
+          a+=1;
+         }
+      return a;
+    }
+    
+}
+
+```
