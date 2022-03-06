@@ -1,11 +1,14 @@
 # Solidity-Cool-Features
 Here in this page, I am introducing a couple of tips that allows Soldiity developers to optimize their code.
 
+Smart contract developers often feel gas optimization is painful, particularly in complex smart contracts. Hence, it is crucial to leverage some techniques to optimize smart contract source code rather than bytecode. In this short article, I will introduce some of these techniques for Solidity smart contracts, so happy optimization!
+
+
 
 ### Custom Errors in Solidity 0.8
-Defining custom errors and use them with Revert, instead of String, reduces the gas consumption in the Solidity smart contracts.
-Wht is like that?
-If you use an string to show the error the amount of the gas depends on the string lenght. For example:
+Defining custom errors and using them with Revert, instead of String reduces the gas consumption in the Solidity smart contracts.
+What is it like that?
+If you use a string to show the error, the amount of the gas depends on the string length. For example:
 
 
 ```
@@ -23,10 +26,10 @@ contract Playground {
 
 }
 ````
- The execution cost of the withdraw function now is ***23678*** gas, the longer is error message is, the more gas is going to consume.
+ The execution cost of the withdraw function now is ***23678*** gas; the longer the error message is, the more gas is going to consume.
  
  #### So now what?
- Now we want to take advantage of a new features introduced in Solidity 8 in order to reduce our gas consumption!
+ Now we want to take advantage of new features introduced in Solidity 8 in order to reduce our gas consumption!
  
  ```
 pragma solidity ^0.8.4;
@@ -58,8 +61,8 @@ contract Playground {
  
 
 #### Caching Local State Variables
-If you are familiar with databases in sofware engineering, you know that fetching data from databases are slower than fetching data from the memory.
-We have the same concept in Soldity as well, but here we can exchange the term "Database" with "Local State" variables.
+If you are familiar with databases in software engineering, you know that fetching data from databases are slower than fetching data from memory.
+We have the same concept in Solidity as well, but here we can exchange the term "Database" with "Local State" variables.
 
 Take a look at the following example with high gas consumption before the cashing technique:
 
